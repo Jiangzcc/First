@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="jquery-1.8.3.min.js"></script>
+<script>
+    $(function(){
+
+        $.post("/zzz/queryAll",{},function(data){
+            $.each(data,function(index,user){
+                $("#aa").append(user.username+"==="+user.password+"<br/>");
+            })
+        },"JSON")
+
+
+        $("#bb").click(function(){
+            $.ajax({
+                url:"/zzz/generateHtml",
+                type:"post",
+                dataType:"json",
+                success:function(){
+                    alert("生成成功");
+                },
+                error:function(){
+                    alert("生成失敗");
+                }
+
+            });
+
+        });
+    })
+</script>
+<body>
+<div id="aa"></div>
+<input type="button" id="bb" value="生成静态页面">
+</body>
+</html>
